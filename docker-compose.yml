@@ -1,4 +1,9 @@
 services:
+  reg:
+    image: registry:2
+    ports:
+      - 50001:5000
+
   docker:
     image: docker:dind
     privileged: true
@@ -12,10 +17,13 @@ services:
     networks:
       - jenkins-net
 
+  # NOTE
+  # If permission error occurs on linux/unix, run the following command
+  # chown -R 1000:1000 jenkins-data
   jenkins:
     build: .
     ports:
-      - 8080:8080
+      - 80:8080
       - 50000:50000
     environment:
       - DOCKER_TLS_VERIFY=1
