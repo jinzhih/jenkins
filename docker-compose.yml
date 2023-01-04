@@ -16,7 +16,8 @@ services:
   # If permission error occurs on linux/unix, run the following command
   # chown -R 1000:1000 jenkins-data
   jenkins:
-    build: jenkins.Dockerfile
+    context: ./
+    build: Dockerfile
     ports:
       - 8080:8080
       - 50000:50000
